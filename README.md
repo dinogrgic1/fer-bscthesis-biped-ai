@@ -1,2 +1,0 @@
-# FER BscThesis Biped AI
-
