@@ -1,0 +1,25 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.6715298045900551 0.6989429141434719 0.24602138995598266 0.7588866818942236
+  position 1.0323191767193243 1.5752112490671515 1.3282789588062671
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 5 5
+  floorAppearance Parquetry {
+    type "light strip"
+  }
+  wallHeight 0.5
+}
+Hoap2 {
+  translation 0 0.29 -1.09
+  controllerArgs [
+    "walk"
+  ]
+}
