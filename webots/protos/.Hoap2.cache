@@ -1,0 +1,11 @@
+Webots Proto Cache File version 1.5
+protoFileHash: a93698190b803a07359bf1a15208a0ed
+needsRobotAncestor: 1
+baseType: Robot
+slotType: 
+parameters: translation,rotation,name,controller,controllerArgs,customData,supervisor,synchronization,contactMaterial,footContactMaterial,extensionSlot
+tags: 
+license:  Copyright Cyberbotics Ltd. Licensed for use only with Webots.
+licenseUrl:  https://cyberbotics.com/webots_assets_license
+documentationUrl: https://www.cyberbotics.com/doc/guide/hoap2
+info: Hoap\s2\s-\sAdvanced\shumanoid\srobot\smanufactured\sby\sFujitsu\sAutomation\n50\scm\shigh,\s7\skg,\s25\sdegrees\sof\sfreedom\n
