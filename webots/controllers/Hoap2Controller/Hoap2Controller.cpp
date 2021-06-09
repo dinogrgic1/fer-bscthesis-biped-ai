@@ -12,6 +12,7 @@
 #include <webots/Device.hpp>
 #include <webots/TouchSensor.hpp>
 
+
 #define CONTROL_STEP 50
 
 using namespace webots;
@@ -118,7 +119,7 @@ int main(int argc, char **argv)
     return 1;
   }
 
-  int sampling;
+  int sampling = 1;
   std::vector<int> pulse = {209, 209, 209, 209, -209, -209, -209, 209, -209, 209, 209, 209, -209, -209, 209, -209, 209, 0, 209, 209, -209, -209, 0, 0, 0};
   std::vector<int> tempMotor(25, 0);
 
@@ -135,9 +136,8 @@ int main(int argc, char **argv)
   rightTouch->enable(CONTROL_STEP);
 
   sscanf(motion,
-         "%d, %*d, %d, %d, %d, %d ,%d, %d, %d, %d, %d, %d, %d, %d, %d, "
+         "%d, %d, %d, %d ,%d, %d, %d, %d, %d, %d, %d, %d, %d, "
          "%d, %d, %d, %d, %d, %d, %d, %d",
-         &sampling, 
          &tempMotor[(int)Joints::rleg_joint_1], &tempMotor[(int)Joints::rleg_joint_2], &tempMotor[(int)Joints::rleg_joint_3], &tempMotor[(int)Joints::rleg_joint_4], &tempMotor[(int)Joints::rleg_joint_5], &tempMotor[(int)Joints::rleg_joint_6], 
          &tempMotor[(int)Joints::rarm_joint_1], &tempMotor[(int)Joints::rarm_joint_2], &tempMotor[(int)Joints::rarm_joint_3], &tempMotor[(int)Joints::rarm_joint_4], 
          &tempMotor[(int)Joints::lleg_joint_1], &tempMotor[(int)Joints::lleg_joint_2], &tempMotor[(int)Joints::lleg_joint_3], &tempMotor[(int)Joints::lleg_joint_4], &tempMotor[(int)Joints::lleg_joint_5], &tempMotor[(int)Joints::lleg_joint_6],
@@ -179,7 +179,7 @@ int main(int argc, char **argv)
     {
       // read data for next positions from CSV
       sscanf(motion,
-             "%*d, %*d, %d, %d, %d, %d ,%d, %d, %d, %d, %d,"
+             "%*d, %d, %d, %d, %d ,%d, %d, %d, %d, %d,"
              " %d, %d, %d, %d, %d, %d, %d, %d, %d, %d,"
              " %d, %d",
              &posFromCsv[(int)Joints::rleg_joint_1], &posFromCsv[(int)Joints::rleg_joint_2], &posFromCsv[(int)Joints::rleg_joint_3],
