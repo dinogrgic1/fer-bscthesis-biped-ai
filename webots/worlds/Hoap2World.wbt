@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.46481858658317965 -0.8586016741312534 -0.216210191123879 5.534978533961115
-  position 1.2699053617043654 1.2328170408656438 1.7893110433982709
+  orientation 0.49040307946822453 -0.8420472549882079 -0.22463579415335047 5.518054608099893
+  position 1.0396437385068908 1.1800458782115444 1.4855959467650013
 }
 TexturedBackground {
 }
@@ -22,7 +22,7 @@ Hoap2 {
   translation 0 0.29 -0.5
   controller "Hoap2Controller"
   controllerArgs [
-    "../../../data/hoap2/walk.csv"
+    "../../../data/hoap2/walk_500.csv"
   ]
 }
 Table {
