@@ -22,7 +22,7 @@ Hoap2 {
   translation 0 0.29 -0.5
   controller "Hoap2Controller"
   controllerArgs [
-    "../../../data/hoap2/walk-25.csv"
+    "../../../data/hoap2/walk-250.csv"
   ]
 }
 Table {
