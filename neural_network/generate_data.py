@@ -101,71 +101,58 @@ if __name__ == '__main__':
             'larm3': larm3_angle, 'larm4': larm4_angle, 
             'rarm3': rarm3_angle, 'rarm4' : rarm4_angle, 'body' : body_angle}
 
-    for joint in joints:
-        arr = []
-        if joint == 'larm1':
-            arr = larm1_angle
-        elif joint == 'larm2':
-            arr = larm2_angle
-        elif joint == 'lleg3':
-            arr = lleg3_angle
-        elif joint == 'rarm1':
-            arr = rarm1_angle
-        elif joint == 'rarm2':
-            arr = rarm2_angle
-        elif joint == 'rleg3':
-            arr = rleg3_angle
-        elif joint == 'lleg4':
-            arr = lleg4_angle
-        elif joint == 'lleg5':
-            arr = lleg5_angle
-        elif joint == 'lleg6':
-            arr = lleg6_angle
-        elif joint == 'rleg4':
-            arr = rleg4_angle
-        elif joint == 'rleg5':
-            arr = rleg5_angle
-        elif joint == 'rleg6':
-            arr = rleg6_angle
+    epoch = [25, 100, 200, 250]
+    for e in epoch:
+        for joint in joints:
+            arr = []
+            if joint == 'larm1':
+                arr = larm1_angle
+            elif joint == 'larm2':
+                arr = larm2_angle
+            elif joint == 'lleg3':
+                arr = lleg3_angle
+            elif joint == 'rarm1':
+                arr = rarm1_angle
+            elif joint == 'rarm2':
+                arr = rarm2_angle
+            elif joint == 'rleg3':
+                arr = rleg3_angle
+            elif joint == 'lleg4':
+                arr = lleg4_angle
+            elif joint == 'lleg5':
+                arr = lleg5_angle
+            elif joint == 'lleg6':
+                arr = lleg6_angle
+            elif joint == 'rleg4':
+                arr = rleg4_angle
+            elif joint == 'rleg5':
+                arr = rleg5_angle
+            elif joint == 'rleg6':
+                arr = rleg6_angle
 
-        #path = f'models/150_50_25_25_cycleStart/{joint}/saved-model'
-        path = f'models/150_50_25_25_1/{joint}/saved-model-500'
-        model_load = load_model(path)
 
-        x = asarray([i for i in range(0,len(arr))])
-        y = asarray(arr)
-    
-        x = x.reshape((len(x), 1))
-        y = y.reshape((len(y), 1))
-
-        scale_x = MinMaxScaler()
-        x = scale_x.fit_transform(x)
-        scale_y = MinMaxScaler()
-        y = scale_y.fit_transform(y)
+            path = f'models/150_50_25_25_3/{joint}/saved-model-{e}'
+            model_load = load_model(path)
+            x = asarray([i for i in range(0,len(arr))])
+            y = asarray(arr)
         
-        ywhat = model_load.predict(x)
-    
-        yhat_plot = scale_y.inverse_transform(ywhat)
-
-        data[joint] = [int(i[0]) for i in yhat_plot.tolist()]
-
-        fig, axs = plt.subplots(1)
-        fig.set_size_inches(10, 6, forward=True)   
-        x = [i / 1000 for i in range (0, len(arr))]
-        arr = [i / 260 for i in arr] 
-        axs.plot(x, arr, 'b')
-        axs.set_title(joint)
-        yhat_plot = [i[0] / 260 for i in yhat_plot]
-        axs.plot(x, yhat_plot, 'r')
+            x = x.reshape((len(x), 1))
+            y = y.reshape((len(y), 1))
+            scale_x = MinMaxScaler()
+            x = scale_x.fit_transform(x)
+            scale_y = MinMaxScaler()
+            y = scale_y.fit_transform(y)
+            
+            ywhat = model_load.predict(x)
         
-        plt.savefig(f'{path}.png')
-        plt.show()
-
-    f = open(f"../data/hoap2/{TITLE}_best.csv", "w")
-    for i in range(0, len(body_angle)):
-        row = []
-        for joint in csv_header:
-            row.append(str(data[joint][i]))
-        f.write(','.join(row))
-        f.write('\n')
-    f.close()
+            yhat_plot = scale_y.inverse_transform(ywhat)
+            data[joint] = [int(i[0]) for i in yhat_plot.tolist()]
+            
+        f = open(f"../data/hoap2/{TITLE}-{e}.csv", "w")
+        for i in range(0, len(body_angle)):
+            row = []
+            for joint in csv_header:
+                row.append(str(data[joint][i]))
+            f.write(','.join(row))
+            f.write('\n')
+        f.close()
